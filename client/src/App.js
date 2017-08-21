@@ -22,7 +22,6 @@ class App extends Component {
       popularShows: null,
       dataLoaded: false
     }
-    
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
