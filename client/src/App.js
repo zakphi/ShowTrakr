@@ -20,7 +20,6 @@ class App extends Component {
       auth: false,
       user: null,
     }
-    this.setPage = this.setPage.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -41,9 +40,11 @@ class App extends Component {
     }).catch(err => console.log(err));
   }
 
-  handleRegisterSubmit(e, username, password, email) {
+  handleRegisterSubmit(e, first_name, last_name, username, password, email) {
     e.preventDefault();
     axios.post('/auth/register', {
+      first_name,
+      last_name,
       username,
       password,
       email,
