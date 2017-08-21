@@ -35,3 +35,14 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
+// Error handler
+app.use('*', (req, res) => {
+  res.status(400).json({
+    message: 'Not found!',
+  });
+});
+
+
+
+
+
