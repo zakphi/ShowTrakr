@@ -14,13 +14,15 @@ import Register from './components/Register';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header logOut={this.logOut} />
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
-        <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} /> 
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          <Header logOut={this.logOut} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
+          <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
