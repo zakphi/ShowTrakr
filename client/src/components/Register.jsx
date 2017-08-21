@@ -4,6 +4,8 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
+      first_name: '',
+      last_name: '',
       username: '',
       password: '',
       email: '',
@@ -23,6 +25,8 @@ class Register extends Component {
     return (
       <div className="register">
         <form onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state.username, this.state.password, this.state.email)}>
+          <input type="text" name="first_name" value={this.state.first_name} placeholder="First_name" onChange={this.handleInputChange}  />
+          <input type="text" name="last_name" value={this.state.last_name} placeholder="Last_name" onChange={this.handleInputChange}  />
           <input type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange}  />
           <input type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange}  />
           <input type="email" name="email" value={this.state.email} placeholder="email" onChange={this.handleInputChange} />
