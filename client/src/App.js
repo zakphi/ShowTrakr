@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Nav from './components/Nav';
+import Register from './components/Register';
+
 class App extends Component {
   render() {
     return (
