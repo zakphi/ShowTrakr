@@ -6,8 +6,6 @@ import {
 } from 'react-router-dom'
 import axios from 'axios'
 
-import axios from 'axios';
-
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -17,11 +15,14 @@ import Register from './components/Register';
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
       auth: false,
       user: null,
+      popularShows: null,
+      dataLoaded: false
     }
-    this.setPage = this.setPage.bind(this);
+
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -68,12 +69,23 @@ class App extends Component {
       }).catch(err => console.log(err));
   }
   
+  componentDidMount(){
+    axios.get('https://www.episodate.com/api/most-popular?page=1')
+      .then(res => {
+        this.setState({
+          popularShows: res.data.tv_shows,
+          dataLoaded: true
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
           <Header logOut={this.logOut} />
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' render={() => <Home dataLoaded={this.state.dataLoaded} popularShows={this.state.popularShows} />} />
           <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
           <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
           <Footer />
