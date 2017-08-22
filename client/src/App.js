@@ -21,7 +21,8 @@ class App extends Component {
       auth: false,
       user: null,
       popularShows: null,
-      dataLoaded: false
+      dataLoaded: false,
+      redirect: false
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
