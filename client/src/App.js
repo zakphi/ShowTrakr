@@ -66,7 +66,8 @@ class App extends Component {
       .then(res => {
         console.log(res);
         this.setState({
-          auth: false
+          auth: false,
+          redirect: false
         });
       }).catch(err => console.log(err));
   }
@@ -86,7 +87,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header logOut={this.logOut} />
+          <Header logOut={this.logOut} auth={this.state.auth} />
           <Route exact path='/' render={() => <Home dataLoaded={this.state.dataLoaded} popularShows={this.state.popularShows} />} />
           <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
           <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
