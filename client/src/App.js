@@ -39,7 +39,7 @@ class App extends Component {
       this.setState({
         auth: res.data.auth,
         user: res.data.user,
-        currentPage: 'home',
+        redirect: true
       });
     }).catch(err => console.log(err));
   }
@@ -56,7 +56,7 @@ class App extends Component {
       this.setState({
         auth: res.data.auth,
         user: res.data.user,
-        currentPage: 'home',
+        redirect: true
       });
     }).catch(err => console.log(err));
   }
@@ -66,8 +66,7 @@ class App extends Component {
       .then(res => {
         console.log(res);
         this.setState({
-          auth: false,
-          currentPage: 'home',
+          auth: false
         });
       }).catch(err => console.log(err));
   }
@@ -91,6 +90,7 @@ class App extends Component {
           <Route exact path='/' render={() => <Home dataLoaded={this.state.dataLoaded} popularShows={this.state.popularShows} />} />
           <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
           <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
+          {this.state.redirect ? <Redirect push to={'/'} /> : ''}
           <Footer />
         </div>
       </Router>
