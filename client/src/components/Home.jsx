@@ -5,7 +5,7 @@ class Home extends Component {
   renderPopularShows(){
     if(this.props.dataLoaded){
       return this.props.popularShows.map((show) => {
-        return <PopularShow key={show.id} show={show} />
+        return <PopularShow key={show.id} show={show} getShowData={this.props.getShowData} />
       })
     } else {
       return <h1>Loading...</h1>
