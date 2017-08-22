@@ -66,7 +66,8 @@ class App extends Component {
       .then(res => {
         console.log(res);
         this.setState({
-          auth: false
+          auth: false,
+          redirect: false
         });
       }).catch(err => console.log(err));
   }
