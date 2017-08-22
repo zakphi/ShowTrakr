@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 
-const Footer = () => {
+class Footer extends Component {
+  constructor(){
+    super()
+
+    const year = new Date().getFullYear()
+
+    this.state = {
+      year: year
+    }
+  }
+  render(){
     return (
-        <footer> 
-            TV Show Trakr 2017 ©
-        </footer>
+      <footer>
+        TV Show Trakr {this.state.year} ©
+      </footer>
     )
+  }
 }
 
 export default Footer;
