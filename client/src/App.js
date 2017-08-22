@@ -22,13 +22,23 @@ class App extends Component {
       user: null,
       popularShows: null,
       dataLoaded: false,
-      redirect: false
+      redirect: false,
+      mobileNavVisible: false
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
     this.getShowData = this.getShowData.bind(this);
+    this.handleNavClick = this.handleNavClick.bind(this);
   }
+
+  handleNavClick() {
+  if(!this.state.mobileNavVisible) {
+    this.setState({mobileNavVisible: true});
+  } else {
+    this.setState({mobileNavVisible: false});
+  }
+}
 
   // Auth Login/Register/Logout
   handleLoginSubmit(e, username, password) {
@@ -103,7 +113,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header logOut={this.logOut} auth={this.state.auth} />
+          <Header logOut={this.logOut} auth={this.state.auth} handleNavClick={this.handleNavClick} mobileNavVisible={this.state.mobileNavVisible} />
           <Route exact path='/' render={() => <Home dataLoaded={this.state.dataLoaded} popularShows={this.state.popularShows} getShowData={this.getShowData} />} />
           <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
           <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
