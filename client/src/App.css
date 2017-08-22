@@ -101,6 +101,7 @@
 
   .navBar a {
   color: white;
+  font-size: 1.75em;
 }
 
   .mobile-menu {
@@ -110,11 +111,18 @@
   .slideBar {
     position: relative;
     visibility: hidden;
+    padding-right: 0%;
+    padding-left: 0%;
   }
 
   .slide {
-    width: 45%;
+    width: 55%;
     position: relative;
     visibility: hidden;
   }
+
+  .nav {
+    margin-top: 0%;
+  }
 }
+
