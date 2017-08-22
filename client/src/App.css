@@ -28,13 +28,12 @@
   color: #c52018;
 }
 
-.navBar a:active {
-  color: #c52018;
+.navBar li {
+  padding: 0 1.5% 0 0;
 }
 
-.navBar li {
-  padding: 0 1.5vw 0 0;
-  
+.navBar .active{
+  color: #c52018;
 }
 
 @media screen and (min-width: 480px) {
