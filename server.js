@@ -43,6 +43,9 @@ app.get('/', (req, res) => {
 const authRoutes = require('./routes/auth-routes');
 app.use('/auth', authRoutes);
 
+const showRoutes = require('./routes/show-routes');
+app.use('/profile', showRoutes);
+
 // Error handler
 app.use('*', (req, res) => {
   res.status(400).json({
