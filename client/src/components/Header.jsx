@@ -16,6 +16,12 @@ const Header = (props) => {
                 {!props.auth ? <li><NavLink exact to='/register' activeClassName='active'>Register</NavLink></li> : ''}
                 {props.auth ? <li>My Profile</li> : ''}
                 {props.auth ? <li onClick={props.logOut}><NavLink exact to='/' activeClassName='active'>Log Out</NavLink></li> : ''}
+                <li> <form className="search">
+                    <input onChange={props.inputSearch} type="text" className="search-bar" />
+                    <NavLink to='/results'>
+                    <button onClick={() => props.handleSearch()} type="submit" className="search-submit">Search</button> 
+                    </NavLink>
+                </form></li>
             </nav>
             </div>
             </div>
