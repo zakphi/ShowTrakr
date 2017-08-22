@@ -12,17 +12,20 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import SingleShow from './components/SingleShow'
+import SingleShow from './components/SingleShow';
+import SearchResults from './components/SearchResults';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
+      search: null,
       auth: false,
       user: null,
       popularShows: null,
-      dataLoaded: false,
+      apiDataLoaded: false,
+      searchDataLoaded: false,
       redirect: false,
       mobileNavVisible: false,
       showData: {
@@ -32,13 +35,31 @@ class App extends Component {
         sched_date: null,
         image_url: null,
         summary: null,
-      }
+      },
+      showResults: null
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
     this.getShowData = this.getShowData.bind(this);
     this.handleNavClick = this.handleNavClick.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.inputSearch = this.inputSearch.bind(this);
+  }
+
+  handleSearch() {
+    axios.get(`http://api.tvmaze.com/search/shows?q=${this.state.search}`)
+    .then(res => {
+      console.log(res.data)
+      this.setState({
+        showResults: res.data,
+        searchDataLoaded: true
+      })
+    })
+  }
+
+  inputSearch(e){
+    this.setState({search: e.target.value})
   }
 
   handleNavClick() {
@@ -97,7 +118,7 @@ class App extends Component {
       .then(res => {
         this.setState({
           popularShows: res.data.tv_shows,
-          dataLoaded: true
+          apiDataLoaded: true
         })
       })
       .catch(err => console.log(err))
@@ -124,11 +145,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header logOut={this.logOut} auth={this.state.auth} handleNavClick={this.handleNavClick} mobileNavVisible={this.state.mobileNavVisible} />
-          <Route exact path='/' render={() => <Home dataLoaded={this.state.dataLoaded} popularShows={this.state.popularShows} getShowData={this.getShowData} />} />
+          <Header inputSearch={this.inputSearch} handleSearch={this.handleSearch} showData={this.state.showData} showResults={this.state.showResults} logOut={this.logOut} auth={this.state.auth} handleNavClick={this.handleNavClick} mobileNavVisible={this.state.mobileNavVisible} />
+          <Route exact path='/' render={() => <Home  dataLoaded={this.state.apiDataLoaded} popularShows={this.state.popularShows} getShowData={this.getShowData} />} />
           <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
           <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
           <Route exact path='/show' render={() => <SingleShow showData={this.state.showData} /> } />
+          <Route exact path='/results' render={() => <SearchResults showData={this.state.showData} showResults={this.state.showResults} getShowData={this.getShowData} dataLoaded={this.state.searchDataLoaded} />} />
           {this.state.redirect ? <Redirect push to={'/'} /> : ''}
           <Footer />
         </div>
