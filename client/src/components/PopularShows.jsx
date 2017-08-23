@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PopularShow from './PopularShow'
 
-class Home extends Component {
+class PopularShows extends Component {
   renderPopularShows(){
     if(this.props.dataLoaded){
       return this.props.popularShows.map((show) => {
@@ -24,4 +24,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default PopularShows;

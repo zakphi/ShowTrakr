@@ -9,7 +9,7 @@ import axios from 'axios'
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './components/Home';
+import PopularShows from './components/PopularShows';
 import Login from './components/Login';
 import Register from './components/Register';
 import SingleShow from './components/SingleShow';
@@ -146,7 +146,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header inputSearch={this.inputSearch} handleSearch={this.handleSearch} showData={this.state.showData} showResults={this.state.showResults} logOut={this.logOut} auth={this.state.auth} handleNavClick={this.handleNavClick} mobileNavVisible={this.state.mobileNavVisible} />
-          <Route exact path='/' render={() => <Home  dataLoaded={this.state.apiDataLoaded} popularShows={this.state.popularShows} getShowData={this.getShowData} />} />
+          <Route exact path='/' render={() => <PopularShows  dataLoaded={this.state.apiDataLoaded} popularShows={this.state.popularShows} getShowData={this.getShowData} />} />
           <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
           <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
           <Route exact path='/show' render={() => <SingleShow showData={this.state.showData} /> } />
