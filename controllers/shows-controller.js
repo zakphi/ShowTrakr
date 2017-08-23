@@ -3,12 +3,9 @@ const Show = require('../models/show');
 const showController = {};
 
 showController.index = (req, res) => {
-  Show.findAll()
+  Show.findUsersShows(req.user.id)
     .then(shows => {
-      res.json({
-        message: 'ok',
-        data: shows,
-      });
+      res.json(shows);
     }).catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -47,4 +44,3 @@ showController.delete = (req, res) => {
 }
 
 module.exports = showController;
-
