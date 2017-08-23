@@ -20,7 +20,7 @@ class SingleShow extends Component {
           <li>{this.props.showData.sched_time}</li>
         </ul>
         {this.showSummary()}
-        <button className="favButton"><Link to='/profile'>Favorite</Link></button>
+        {this.props.auth ? <button className="favButton"><Link to='/profile'>Favorite</Link></button> : ''}
       </div>
     )
   }
