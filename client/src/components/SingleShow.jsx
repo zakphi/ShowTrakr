@@ -12,7 +12,7 @@ class SingleShow extends Component {
   render(){
     return(
       <div className='singleShow'>
-        <img src={this.props.showData.image_url} />
+        <img src={this.props.showData.image_url} alt={this.props.showData.title} />
         <ul>
           <li>{this.props.showData.title}</li>
           <li>{this.props.showData.sched_day}</li>
