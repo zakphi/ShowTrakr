@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import SingleShow from './components/SingleShow';
 import SearchResults from './components/SearchResults';
+import Profile from './components/Profile';
 
 class App extends Component {
   constructor() {
@@ -36,7 +37,8 @@ class App extends Component {
         image_url: null,
         summary: null,
       },
-      showResults: null
+      showResults: null,
+      usersShows: null
     }
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -46,6 +48,7 @@ class App extends Component {
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.inputSearch = this.inputSearch.bind(this);
+    this.getUsersShows = this.getUsersShows.bind(this);
   }
 
   handleSearch() {
@@ -71,6 +74,17 @@ class App extends Component {
     }
   }
 
+  getUsersShows(userid){
+    console.log(userid)
+    axios.get('/profile/')
+    .then(res =>{
+      console.log(res)
+      this.setState({
+        usersShows: res
+      })
+    })
+  }
+
   handleLoginSubmit(e, username, password) {
     e.preventDefault();
     axios.post('/auth/login', {
@@ -83,6 +97,7 @@ class App extends Component {
           user: res.data.user,
           redirect: true
         });
+        this.getUsersShows(res.data.user.id);
       })
       .catch(err => console.log(err));
   }
@@ -179,7 +194,11 @@ class App extends Component {
             showResults={this.state.showResults}
             getShowData={this.getShowData}
             dataLoaded={this.state.searchDataLoaded}
-          />} />
+          /> } />
+          <Route exact path='/profile' render={() => <Profile
+            getShowData={this.getShowData}
+            usersShows={this.state.usersShows}
+          /> } />
           {this.state.redirect ? <Redirect push to={'/'} /> : ''}
           <Footer />
         </div>
