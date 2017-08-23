@@ -14,18 +14,36 @@ class PopularShows extends Component {
     } else {
       return <h1>Loading...</h1>
     }
+    this.renderingPageButtons = this.renderingPageButtons.bind(this);
+  }
+
+  renderingPageButtons(){
+    if(this.props.currentNum === 1){
+      return(
+      <div>
+        <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+      </div>
+      )
+    } else {
+      return (
+        <div>
+        <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
+        <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+        </div>
+      )
+    }
   }
 
   render(){
     return (
       <div className="home">
+      {console.log(this.props.currentNum)}
         <h1>Popular Shows</h1>
         <div className='popularShows'>
           {this.renderPopularShows()}
         </div>
         <div className='changepage'>
-         <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
-         <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+          {this.renderingPageButtons()}
         </div>
       </div>
     )
