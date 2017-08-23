@@ -32,7 +32,10 @@ const Header = (props) => {
                 activeClassName='active'>Register</NavLink></li>
               : ''}
             {props.auth
-              ? <li>My Profile</li>
+              ? <li><NavLink
+              exact
+              to='/profile'
+              activeClassName='active'>My Profile</NavLink></li>
               : ''}
             {props.auth
               ? <li onClick={props.logOut}><NavLink
