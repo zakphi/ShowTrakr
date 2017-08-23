@@ -22,7 +22,7 @@ class App extends Component {
 
     this.state = {
       search: null,
-      pageNumber: 1,
+      currentNum: 1,
       auth: false,
       user: null,
       popularShows: null,
@@ -50,6 +50,7 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.inputSearch = this.inputSearch.bind(this);
     this.getUsersShows = this.getUsersShows.bind(this);
+    this.changePopularPage = this.changePopularPage.bind(this);
   }
 
   handleSearch() {
@@ -133,12 +134,24 @@ class App extends Component {
 
 
   componentDidMount(){
-    axios.get(`https://www.episodate.com/api/most-popular?page=${this.state.pageNumber}`)
+    axios.get('https://www.episodate.com/api/most-popular?page=1')
       .then(res => {
         this.setState({
           popularShows: res.data.tv_shows,
           apiDataLoaded: true,
-          pageNumber: this.state.pageNumber+1,
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  changePopularPage(num){
+    const newPageNum = this.state.currentNum + num;
+    axios.get(`https://www.episodate.com/api/most-popular?page=${newPageNum}`)
+      .then(res => {
+        this.setState({
+          popularShows: res.data.tv_shows,
+          apiDataLoaded: true,
+          currentNum: newPageNum,
         })
       })
       .catch(err => console.log(err))
@@ -180,8 +193,7 @@ class App extends Component {
             dataLoaded={this.state.apiDataLoaded}
             popularShows={this.state.popularShows}
             getShowData={this.getShowData}
-            pageNumber={this.state.pageNumber}
-            componentDidMount={this.componentDidMount}
+            changePopularPage={this.changePopularPage}
           /> } />
           <Route exact path='/login' render={() => <Login
             handleLoginSubmit={this.handleLoginSubmit}

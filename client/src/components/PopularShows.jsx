@@ -23,9 +23,9 @@ class PopularShows extends Component {
         <div className='popularShows'>
           {this.renderPopularShows()}
         </div>
-        <div className='nextpage'>
-         <button onClick={() => window.location.reload()}className="back">&laquo; Back To Home</button>
-         <button onClick={this.props.componentDidMount} className="next">Next &raquo;</button>
+        <div className='changepage'>
+         <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
+         <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
         </div>
       </div>
     )
