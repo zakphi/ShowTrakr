@@ -2,8 +2,13 @@ const db = require('../db/config');
 
 const Show = {};
 
-Show.findAll = () => {
-  return db.query('SELECT * FROM shows');
+// Show.findAll = () => {
+//   return db.query('SELECT * FROM shows');
+// }
+
+Show.findUsersShows = (userid) => {
+  return db.manyOrNone(`SELECT * FROM shows 
+  WHERE user_id = $1`, [userid])
 }
 
 Show.create = (show, userid) => {
