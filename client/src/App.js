@@ -22,6 +22,7 @@ class App extends Component {
 
     this.state = {
       search: null,
+      pageNum: 1,
       auth: false,
       user: null,
       popularShows: null,
@@ -38,7 +39,8 @@ class App extends Component {
         summary: null,
       },
       showResults: null,
-      usersShows: null
+      usersShows: null,
+      lastPage: null
     }
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -49,6 +51,7 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.inputSearch = this.inputSearch.bind(this);
     this.getUsersShows = this.getUsersShows.bind(this);
+    this.changePopularPage = this.changePopularPage.bind(this);
   }
 
   handleSearch() {
@@ -129,18 +132,33 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
-  
+
+
   componentDidMount(){
     axios.get('https://www.episodate.com/api/most-popular?page=1')
       .then(res => {
         this.setState({
           popularShows: res.data.tv_shows,
-          apiDataLoaded: true
+          apiDataLoaded: true,
+          lastPage: res.data.pages
         })
       })
       .catch(err => console.log(err))
   }
-  
+
+  changePopularPage(num){
+    const newPageNum = this.state.pageNum + num;
+    axios.get(`https://www.episodate.com/api/most-popular?page=${newPageNum}`)
+      .then(res => {
+        this.setState({
+          popularShows: res.data.tv_shows,
+          apiDataLoaded: true,
+          pageNum: newPageNum,
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   getShowData(showName) {
     axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${showName}`)
       .then(res => {
@@ -174,9 +192,12 @@ class App extends Component {
             mobileNavVisible={this.state.mobileNavVisible}
           />
           <Route exact path='/' render={() => <PopularShows
+            pageNum={this.state.pageNum}
             dataLoaded={this.state.apiDataLoaded}
             popularShows={this.state.popularShows}
             getShowData={this.getShowData}
+            changePopularPage={this.changePopularPage}
+            lastPage={this.state.lastPage}
           /> } />
           <Route exact path='/login' render={() => <Login
             handleLoginSubmit={this.handleLoginSubmit}

@@ -16,6 +16,29 @@ class PopularShows extends Component {
     }
   }
 
+  renderingPageButtons(){
+    if(this.props.pageNum === 1){
+      return(
+        <div>
+          <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+        </div>
+      )
+    }
+    if(this.props.pageNum > 1 && this.props.pageNum < this.props.lastPage) {
+      return (
+        <div>
+          <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
+          <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+        </div>
+      )
+    }
+    if(this.props.pageNum === this.props.lastPage) {
+      return(
+        <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
+      )
+    }
+  }
+
   render(){
     return (
       <div className="home">
@@ -23,9 +46,13 @@ class PopularShows extends Component {
         <div className='popularShows'>
           {this.renderPopularShows()}
         </div>
+        <div className='changepage'>
+          {this.renderingPageButtons()}
+        </div>
       </div>
     )
   }
 }
+
 
 export default PopularShows;
