@@ -22,6 +22,7 @@ class App extends Component {
 
     this.state = {
       search: null,
+      pageNumber: 1,
       auth: false,
       user: null,
       popularShows: null,
@@ -129,18 +130,20 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
-  
+
+
   componentDidMount(){
-    axios.get('https://www.episodate.com/api/most-popular?page=1')
+    axios.get(`https://www.episodate.com/api/most-popular?page=${this.state.pageNumber}`)
       .then(res => {
         this.setState({
           popularShows: res.data.tv_shows,
-          apiDataLoaded: true
+          apiDataLoaded: true,
+          pageNumber: this.state.pageNumber+1,
         })
       })
       .catch(err => console.log(err))
   }
-  
+
   getShowData(showName) {
     axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${showName}`)
       .then(res => {
@@ -177,6 +180,8 @@ class App extends Component {
             dataLoaded={this.state.apiDataLoaded}
             popularShows={this.state.popularShows}
             getShowData={this.getShowData}
+            pageNumber={this.state.pageNumber}
+            componentDidMount={this.componentDidMount}
           /> } />
           <Route exact path='/login' render={() => <Login
             handleLoginSubmit={this.handleLoginSubmit}
