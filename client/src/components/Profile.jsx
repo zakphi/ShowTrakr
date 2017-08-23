@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom'
 
-class Profile extends Component {
-    constructor() {
-        super();
-    }
-
-    render(){
-        return (
-            <div>
-                {console.log(this.props)}
-                {this.props.usersShows}
-            </div>
-        )
-    }
-    
+const Profile = (props) => {
+  return (
+    <div className='show'>
+      <Link to='/show'>
+        {props.usersShows.map(show => {
+          return <img onClick={() =>
+            props.getShowData(show.title)}
+            key={show.id}
+            src={show.image_url}
+            alt={show.title} />
+        })}
+      </Link>
+    </div>
+  )
 }
 
 export default Profile;
