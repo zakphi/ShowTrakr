@@ -4,6 +4,15 @@ class Profile extends Component {
     constructor() {
         super();
     }
+
+    render(){
+        return (
+            <div>
+                {console.log(this.props)}
+                {this.props.usersShows}
+            </div>
+        )
+    }
     
 }
 
