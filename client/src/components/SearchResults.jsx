@@ -6,7 +6,11 @@ class SearchResults extends Component {
   renderImageSearch(){
     if(this.props.dataLoaded){
       return this.props.showResults.map((results) => {
-        return <Results key={results.show.id} showResults={results.show} showData={this.props.showData} getShowData={this.props.getShowData} />
+        return <Results
+          key={results.show.id}
+          showResults={results.show}
+          showData={this.props.showData}
+          getShowData={this.props.getShowData} />
       })
     } else {
       return <h1>Loading...</h1>

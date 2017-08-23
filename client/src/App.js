@@ -9,7 +9,7 @@ import axios from 'axios'
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './components/Home';
+import PopularShows from './components/PopularShows';
 import Login from './components/Login';
 import Register from './components/Register';
 import SingleShow from './components/SingleShow';
@@ -38,6 +38,7 @@ class App extends Component {
       },
       showResults: null
     }
+
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -50,12 +51,12 @@ class App extends Component {
   handleSearch() {
     axios.get(`http://api.tvmaze.com/search/shows?q=${this.state.search}`)
     .then(res => {
-      console.log(res.data)
       this.setState({
         showResults: res.data,
         searchDataLoaded: true
       })
     })
+    .catch(err => console.log(err))
   }
 
   inputSearch(e){
@@ -63,26 +64,27 @@ class App extends Component {
   }
 
   handleNavClick() {
-  if(!this.state.mobileNavVisible) {
-    this.setState({mobileNavVisible: true});
-  } else {
-    this.setState({mobileNavVisible: false});
+    if(!this.state.mobileNavVisible) {
+      this.setState({mobileNavVisible: true});
+    } else {
+      this.setState({mobileNavVisible: false});
+    }
   }
-}
 
-  // Auth Login/Register/Logout
   handleLoginSubmit(e, username, password) {
     e.preventDefault();
     axios.post('/auth/login', {
       username,
       password,
-    }).then(res => {
-      this.setState({
-        auth: res.data.auth,
-        user: res.data.user,
-        redirect: true
-      });
-    }).catch(err => console.log(err));
+    })
+      .then(res => {
+        this.setState({
+          auth: res.data.auth,
+          user: res.data.user,
+          redirect: true
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   handleRegisterSubmit(e, first_name, last_name, username, password, email) {
@@ -93,24 +95,26 @@ class App extends Component {
       username,
       password,
       email,
-    }).then(res => {
-      this.setState({
-        auth: res.data.auth,
-        user: res.data.user,
-        redirect: true
-      });
-    }).catch(err => console.log(err));
+    })
+      .then(res => {
+        this.setState({
+          auth: res.data.auth,
+          user: res.data.user,
+          redirect: true
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   logOut() {
     axios.get('/auth/logout')
       .then(res => {
-        console.log(res);
         this.setState({
           auth: false,
           redirect: false
         });
-      }).catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   }
   
   componentDidMount(){
@@ -126,31 +130,56 @@ class App extends Component {
   
   getShowData(showName) {
     axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${showName}`)
-    .then(res => {
-      console.log(res.data.name)
-      this.setState({
-        showData: {
-          title: res.data.name,
-          genre: res.data.genre,
-          sched_time: res.data.schedule.time,
-          sched_day: res.data.schedule.days[0],
-          image_url: res.data.image.medium,
-          summary: res.data.summary,
-        }
+      .then(res => {
+        console.log(res.data.name)
+        this.setState({
+          showData: {
+            title: res.data.name,
+            genre: res.data.genre,
+            sched_time: res.data.schedule.time,
+            sched_day: res.data.schedule.days[0],
+            image_url: res.data.image.medium,
+            summary: res.data.summary,
+          }
+        })
       })
-    })
+      .catch(err => console.log(err))
   }
 
   render() {
     return (
       <Router>
         <div className="App">
-          <Header inputSearch={this.inputSearch} handleSearch={this.handleSearch} showData={this.state.showData} showResults={this.state.showResults} logOut={this.logOut} auth={this.state.auth} handleNavClick={this.handleNavClick} mobileNavVisible={this.state.mobileNavVisible} />
-          <Route exact path='/' render={() => <Home  dataLoaded={this.state.apiDataLoaded} popularShows={this.state.popularShows} getShowData={this.getShowData} />} />
-          <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
-          <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit} />} />
-          <Route exact path='/show' render={() => <SingleShow showData={this.state.showData} /> } />
-          <Route exact path='/results' render={() => <SearchResults showData={this.state.showData} showResults={this.state.showResults} getShowData={this.getShowData} dataLoaded={this.state.searchDataLoaded} />} />
+          <Header
+            inputSearch={this.inputSearch}
+            handleSearch={this.handleSearch}
+            showData={this.state.showData}
+            showResults={this.state.showResults}
+            logOut={this.logOut}
+            auth={this.state.auth}
+            handleNavClick={this.handleNavClick}
+            mobileNavVisible={this.state.mobileNavVisible}
+          />
+          <Route exact path='/' render={() => <PopularShows
+            dataLoaded={this.state.apiDataLoaded}
+            popularShows={this.state.popularShows}
+            getShowData={this.getShowData}
+          /> } />
+          <Route exact path='/login' render={() => <Login
+            handleLoginSubmit={this.handleLoginSubmit}
+          /> } />
+          <Route exact path='/register' render={() => <Register
+            handleRegisterSubmit={this.handleRegisterSubmit}
+          /> } />
+          <Route exact path='/show' render={() => <SingleShow
+            showData={this.state.showData}
+          /> } />
+          <Route exact path='/results' render={() => <SearchResults
+            showData={this.state.showData}
+            showResults={this.state.showResults}
+            getShowData={this.getShowData}
+            dataLoaded={this.state.searchDataLoaded}
+          />} />
           {this.state.redirect ? <Redirect push to={'/'} /> : ''}
           <Footer />
         </div>
