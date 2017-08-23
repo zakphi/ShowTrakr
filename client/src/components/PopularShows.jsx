@@ -19,26 +19,26 @@ class PopularShows extends Component {
   renderingPageButtons(){
     if(this.props.pageNum === 1){
       return(
-        <div>
-          {this.props.pageNum}
-          <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+        <div className='changepage'>
+          <div className="currentpage">{this.props.pageNum}</div>
+          <button onClick={() => this.props.changePopularPage(1)} className="pagebtn">Next &raquo;</button>
         </div>
       )
     }
     if(this.props.pageNum > 1 && this.props.pageNum < this.props.lastPage) {
       return (
-        <div>
-          <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
-          {this.props.pageNum}
-          <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
+        <div className='changepage'>
+          <button onClick={() => this.props.changePopularPage(-1)} className="pagebtn">&laquo; Prev</button>
+          <div className="currentpage">{this.props.pageNum}</div>
+          <button onClick={() => this.props.changePopularPage(1)} className="pagebtn">Next &raquo;</button>
         </div>
       )
     }
     if(this.props.pageNum === this.props.lastPage) {
       return(
-        <div>
-        <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
-        {this.props.pageNum}
+        <div className='changepage'>
+          <button onClick={() => this.props.changePopularPage(-1)} className="pagebtn">&laquo; Prev</button>
+          <div className="currentpage">{this.props.pageNum}</div>
         </div>
       )
     }
@@ -51,7 +51,7 @@ class PopularShows extends Component {
         <div className='popularShows'>
           {this.renderPopularShows()}
         </div>
-        <div className='changepage'>
+        <div>
           {this.renderingPageButtons()}
         </div>
       </div>
