@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class SingleShow extends Component {
   renderHTML(){
@@ -19,7 +20,7 @@ class SingleShow extends Component {
           <li>{this.props.showData.sched_time}</li>
         </ul>
         {this.showSummary()}
-        <button className="favButton">Favorite</button>
+        <button className="favButton"><Link to='/profile'>Favorite</Link></button>
       </div>
     )
   }
