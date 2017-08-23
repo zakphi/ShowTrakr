@@ -3,14 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class SingleShow extends Component {
-  renderHTML(){
-    return {__html: this.props.showData.summary}
-  }
-
-  showSummary(){
-    return <span dangerouslySetInnerHTML={this.renderHTML()}></span>
-  }
-
   addFavorite(){
     axios.post('/profile', {
       title: this.props.showData.title,
@@ -35,7 +27,7 @@ class SingleShow extends Component {
           <li>{this.props.showData.sched_day}</li>
           <li>{this.props.showData.sched_time}</li>
         </ul>
-        {this.showSummary()}
+        <p>{props.showData.summary}</p>
         {this.props.auth ? <button className="favButton" onClick={() => this.addFavorite()}><Link to='/profile'>Favorite</Link></button> : ''}
       </div>
     )
