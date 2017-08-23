@@ -190,6 +190,7 @@ class App extends Component {
             mobileNavVisible={this.state.mobileNavVisible}
           />
           <Route exact path='/' render={() => <PopularShows
+            currentNum={this.state.currentNum}
             dataLoaded={this.state.apiDataLoaded}
             popularShows={this.state.popularShows}
             getShowData={this.getShowData}
