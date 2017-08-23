@@ -102,7 +102,6 @@
   }
   .pagebtn{
     color: white;
-
     font-size: 1.3em;
     height: 40px;
     width: 30%;
@@ -170,5 +169,11 @@
 
   .nav {
     margin-top: 0%;
+  }
+
+  .changepage{
+    width: 40%;
+    padding-right: 30%;
+    padding-left: 30%;
   }
 }
