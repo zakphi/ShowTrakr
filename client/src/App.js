@@ -14,6 +14,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import SingleShow from './components/SingleShow';
 import SearchResults from './components/SearchResults';
+import Profile from './components/Profile';
+
 
 class App extends Component {
   constructor() {
@@ -28,6 +30,7 @@ class App extends Component {
       searchDataLoaded: false,
       redirect: false,
       mobileNavVisible: false,
+      isFavorite: false,
       showData: {
         title: null,
         genre: null,
@@ -46,6 +49,7 @@ class App extends Component {
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.inputSearch = this.inputSearch.bind(this);
+    this.handleFavClick = this.handleFavClick.bind(this);
   }
 
   handleSearch() {
@@ -71,6 +75,16 @@ class App extends Component {
     }
   }
 
+  handleFavClick(userid, showData) {
+    if(!this.state.isFavorite) {
+      this.setState({isFavorite: true});
+      console.log(showData);
+      axios.post('/profile')
+    } else {
+      this.setState({isFavorite: false});
+    }  
+  }
+
   handleLoginSubmit(e, username, password) {
     e.preventDefault();
     axios.post('/auth/login', {
@@ -83,6 +97,7 @@ class App extends Component {
           user: res.data.user,
           redirect: true
         });
+        this.handleFavClick(res.data.user.id);
       })
       .catch(err => console.log(err));
   }
@@ -142,6 +157,7 @@ class App extends Component {
             summary: res.data.summary,
           }
         })
+        this.handleFavClick(this.state.showData)
       })
       .catch(err => console.log(err))
   }
