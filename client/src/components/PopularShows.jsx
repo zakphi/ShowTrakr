@@ -20,6 +20,7 @@ class PopularShows extends Component {
     if(this.props.pageNum === 1){
       return(
         <div>
+          {this.props.pageNum}
           <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
         </div>
       )
@@ -28,13 +29,17 @@ class PopularShows extends Component {
       return (
         <div>
           <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
+          {this.props.pageNum}
           <button onClick={() => this.props.changePopularPage(1)} className="next">Next &raquo;</button>
         </div>
       )
     }
     if(this.props.pageNum === this.props.lastPage) {
       return(
+        <div>
         <button onClick={() => this.props.changePopularPage(-1)} className="prev">&laquo; Prev</button>
+        {this.props.pageNum}
+        </div>
       )
     }
   }
