@@ -4,7 +4,7 @@ class SingleShow extends Component {
   renderHTML(){
     return {__html: this.props.showData.summary}
   }
-  
+
   showSummary(){
     return <span dangerouslySetInnerHTML={this.renderHTML()}></span>
   }
@@ -19,6 +19,7 @@ class SingleShow extends Component {
           <li>{this.props.showData.sched_time}</li>
         </ul>
         {this.showSummary()}
+        <button className="favButton">Favorite</button>
       </div>
     )
   }
