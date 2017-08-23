@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Profile from './Profile';
 
 class SingleShow extends Component {
   renderHTML(){
@@ -19,6 +20,9 @@ class SingleShow extends Component {
           <li>{this.props.showData.sched_time}</li>
         </ul>
         {this.showSummary()}
+        <div className='favorite-button'>
+            <button onClick={this.props.handleFavClick} className="favorite">Favorite</button>
+        </div>
       </div>
     )
   }
