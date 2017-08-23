@@ -39,7 +39,8 @@ class App extends Component {
         summary: null,
       },
       showResults: null,
-      usersShows: null
+      usersShows: null,
+      lastPage: null
     }
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -196,6 +197,7 @@ class App extends Component {
             popularShows={this.state.popularShows}
             getShowData={this.getShowData}
             changePopularPage={this.changePopularPage}
+            lastPage={this.state.lastPage}
           /> } />
           <Route exact path='/login' render={() => <Login
             handleLoginSubmit={this.handleLoginSubmit}
