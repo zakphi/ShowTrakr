@@ -22,7 +22,7 @@ class App extends Component {
 
     this.state = {
       search: null,
-      currentNum: 1,
+      pageNum: 1,
       auth: false,
       user: null,
       popularShows: null,
@@ -139,19 +139,20 @@ class App extends Component {
         this.setState({
           popularShows: res.data.tv_shows,
           apiDataLoaded: true,
+          lastPage: res.data.pages
         })
       })
       .catch(err => console.log(err))
   }
 
   changePopularPage(num){
-    const newPageNum = this.state.currentNum + num;
+    const newPageNum = this.state.pageNum + num;
     axios.get(`https://www.episodate.com/api/most-popular?page=${newPageNum}`)
       .then(res => {
         this.setState({
           popularShows: res.data.tv_shows,
           apiDataLoaded: true,
-          currentNum: newPageNum,
+          pageNum: newPageNum,
         })
       })
       .catch(err => console.log(err))
@@ -190,7 +191,7 @@ class App extends Component {
             mobileNavVisible={this.state.mobileNavVisible}
           />
           <Route exact path='/' render={() => <PopularShows
-            currentNum={this.state.currentNum}
+            pageNum={this.state.pageNum}
             dataLoaded={this.state.apiDataLoaded}
             popularShows={this.state.popularShows}
             getShowData={this.getShowData}
