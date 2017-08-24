@@ -39,7 +39,6 @@ const Header = (props) => {
               : ''}
             {props.auth
               ? <li onClick={props.logOut}><Link
-                exact
                 to='/'>Log Out</Link>
                 </li>
               : ''}
