@@ -52,6 +52,7 @@ class App extends Component {
     this.inputSearch = this.inputSearch.bind(this);
     this.getUsersShows = this.getUsersShows.bind(this);
     this.changePopularPage = this.changePopularPage.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
   }
 
   handleSearch() {
@@ -84,6 +85,15 @@ class App extends Component {
         usersShows: res.data
       })
     })
+  }
+
+  resetUsersShows() {
+    axios.get('/profile')
+    .then(res => {
+      this.setState({
+        usersShows: res.data
+      })
+    }).catch(err => console.log(err));
   }
 
   handleLoginSubmit(e, username, password) {
@@ -133,7 +143,6 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-
   componentDidMount(){
     axios.get('https://www.episodate.com/api/most-popular?page=1')
       .then(res => {
@@ -178,6 +187,22 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  addFavorite(){
+    axios.post('/profile', {
+      title: this.state.showData.title,
+      genre: this.state.showData.genre,
+      sched_time: this.state.showData.sched_time,
+      sched_day: this.state.showData.sched_day,
+      image_url: this.state.showData.image_url,
+      summary: this.state.showData.summary,
+    })
+    .then(res => {
+      console.log(res.data);
+      this.resetUsersShows();
+    })
+    .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <Router>
@@ -209,6 +234,7 @@ class App extends Component {
           <Route exact path='/show' render={() => <SingleShow
             showData={this.state.showData}
             auth={this.state.auth}
+            addFavorite={this.addFavorite}
           /> } />
           <Route exact path='/results' render={() => <SearchResults
             showData={this.state.showData}
