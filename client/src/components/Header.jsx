@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = (props) => {
   return(
@@ -33,23 +33,22 @@ const Header = (props) => {
               : ''}
             {props.auth
               ? <li><NavLink
-              exact
-              to='/profile'
-              activeClassName='active'>My Profile</NavLink></li>
+                exact
+                to='/profile'
+                activeClassName='active'>My Profile</NavLink></li>
               : ''}
             {props.auth
-              ? <li onClick={props.logOut}><NavLink
-                  exact
-                  to='/'
-                  activeClassName='active'>Log Out</NavLink>
+              ? <li onClick={props.logOut}><Link
+                exact
+                to='/'>Log Out</Link>
                 </li>
               : ''}
             <li>
               <form className="search">
                 <input onChange={props.inputSearch} type="text" className="search-bar" />
-                <NavLink to='/results'>
+                <Link to='/results'>
                   <button onClick={() => props.handleSearch()} type="submit" className="search-submit">Search</button> 
-                </NavLink>
+                </Link>
               </form>
             </li>
           </nav>
