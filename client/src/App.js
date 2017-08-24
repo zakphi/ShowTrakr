@@ -23,7 +23,7 @@ class App extends Component {
     this.state = {
       search: null,
       pageNum: 1,
-      auth: false,
+      auth: sessionStorage.getItem('auth') || false,
       user: null,
       popularShows: null,
       apiDataLoaded: false,
@@ -109,6 +109,7 @@ class App extends Component {
           redirect: true
         });
         this.getUsersShows(res.data.user.id);
+        sessionStorage.setItem('auth', true)
       })
       .catch(err => console.log(err));
   }
@@ -128,6 +129,7 @@ class App extends Component {
           user: res.data.user,
           redirect: true
         });
+        sessionStorage.setItem('auth', true)
       })
       .catch(err => console.log(err));
   }
@@ -139,6 +141,7 @@ class App extends Component {
           auth: false,
           redirect: false
         });
+        sessionStorage.removeItem('auth')
       })
       .catch(err => console.log(err));
   }
