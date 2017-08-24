@@ -207,6 +207,7 @@ class App extends Component {
           /> } />
           <Route exact path='/show' render={() => <SingleShow
             showData={this.state.showData}
+            auth={this.state.auth}
           /> } />
           <Route exact path='/results' render={() => <SearchResults
             showData={this.state.showData}
