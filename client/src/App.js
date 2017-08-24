@@ -163,6 +163,7 @@ class App extends Component {
     axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${showName}`)
       .then(res => {
         console.log(res.data.name)
+        const regex = /<\/?\w+[^>]*\/?>/g
         this.setState({
           showData: {
             title: res.data.name,
@@ -170,7 +171,7 @@ class App extends Component {
             sched_time: res.data.schedule.time,
             sched_day: res.data.schedule.days[0],
             image_url: res.data.image.medium,
-            summary: res.data.summary,
+            summary: res.data.summary.replace(regex, ""),
           }
         })
       })
