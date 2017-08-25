@@ -271,6 +271,7 @@ class App extends Component {
             dataLoaded={this.state.searchDataLoaded}
           /> } />
           <Route exact path='/profile' render={() => <Profile
+            user={this.state.user}
             getShowData={this.getShowData}
             usersShows={this.state.usersShows}
             getFavData={this.getFavData}
