@@ -30,6 +30,7 @@ class App extends Component {
       searchDataLoaded: false,
       redirect: false,
       mobileNavVisible: false,
+      imageClicked: 0,
       showData: {
         title: null,
         genre: null,
@@ -185,6 +186,25 @@ class App extends Component {
             image_url: res.data.image.medium,
             summary: res.data.summary.replace(regex, ""),
           }
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  getFavData(show){
+    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${show.title}`)
+      .then(res => {
+        const regex = /<\/?\w+[^>]*\/?>/g
+        this.setState({
+          showData: {
+            title: res.data.name,
+            genre: res.data.genre,
+            sched_time: res.data.schedule.time,
+            sched_day: res.data.schedule.days[0],
+            image_url: res.data.image.medium,
+            summary: res.data.summary.replace(regex, ""),
+          },
+          imageClicked: show.id
         })
       })
       .catch(err => console.log(err))
