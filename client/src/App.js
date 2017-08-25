@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   handleSearch() {
-    axios.get(`http://api.tvmaze.com/search/shows?q=${this.state.search}`)
+    axios.get(`https://api.tvmaze.com/search/shows?q=${this.state.search}`)
     .then(res => {
       this.setState({
         showResults: res.data,
@@ -166,7 +166,7 @@ class App extends Component {
   }
 
   getShowData(show) {
-    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${show}`)
+    axios.get(`https://api.tvmaze.com/singlesearch/shows?q=${show}`)
       .then(res => {
         console.log(res.data.name)
         const regex = /<\/?\w+[^>]*\/?>/g
@@ -185,7 +185,7 @@ class App extends Component {
   }
 
   getFavData(show){
-    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${show.title}`)
+    axios.get(`https://api.tvmaze.com/singlesearch/shows?q=${show.title}`)
       .then(res => {
         const regex = /<\/?\w+[^>]*\/?>/g
         this.setState({
