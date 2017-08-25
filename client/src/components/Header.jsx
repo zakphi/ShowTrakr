@@ -11,7 +11,7 @@ const Header = (props) => {
       <div className={(props.mobileNavVisible ? '':'slide')}>
         <div className="slideBar">
           <nav className="navBar">
-            <li>
+            <li className="wide-load">
               <NavLink
                 exact
                 to='/'
@@ -20,26 +20,29 @@ const Header = (props) => {
               </NavLink>
             </li>
             {!props.auth
-              ? <li><NavLink
+              ? <li className="wide-load"><NavLink
                 exact
                 to='/login'
                 activeClassName='active'>Log In</NavLink></li>
               : ''}
             {!props.auth
-              ? <li><NavLink
+              ? <li className="wide-load"><NavLink
                 exact
                 to='/register'
                 activeClassName='active'>Register</NavLink></li>
               : ''}
             {props.auth
-              ? <li><NavLink
-                exact
-                to='/profile'
-                activeClassName='active'>My Profile</NavLink></li>
+
+              ? <li className="wide-load"><NavLink
+              exact
+              to='/profile'
+              activeClassName='active'>My Profile</NavLink></li>
               : ''}
             {props.auth
-              ? <li onClick={props.logOut}><Link
-                to='/'>Log Out</Link>
+              ? <li className="wide-load" onClick={props.logOut}><NavLink
+                  exact
+                  to='/'
+                  activeClassName='active'>Log Out</NavLink>
                 </li>
               : ''}
             <li>
