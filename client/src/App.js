@@ -90,15 +90,6 @@ class App extends Component {
     })
   }
 
-  resetUsersShows() {
-    axios.get('/profile')
-    .then(res => {
-      this.setState({
-        usersShows: res.data
-      })
-    }).catch(err => console.log(err));
-  }
-
   handleLoginSubmit(e, username, password) {
     e.preventDefault();
     axios.post('/auth/login', {
