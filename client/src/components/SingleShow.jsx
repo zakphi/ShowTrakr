@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class SingleShow extends Component {
+
   render(){
     return(
       <div className='singleShow'>
@@ -12,7 +13,8 @@ class SingleShow extends Component {
           <li>{this.props.showData.sched_time}</li>
         </ul>
         <p>{this.props.showData.summary}</p>
-        {this.props.auth ? <button className="favButton" onClick={() => this.props.addFavorite()}><Link to='/profile'>Favorite</Link></button> : ''}
+        {this.props.auth ? <button className="favButton" onClick={() => this.props.addFavorite()}><Link to='/profile'>Add</Link></button> : ''}
+        {this.props.auth ? <button className="favButton" onClick={() => this.props.removeFavorite(this.props.imageClicked)}><Link to='/profile'>Remove</Link></button> : ''}
       </div>
     )
   }
