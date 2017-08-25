@@ -174,8 +174,8 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  getShowData(showName) {
-    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${showName}`)
+  getShowData(show) {
+    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${show}`)
       .then(res => {
         console.log(res.data.name)
         const regex = /<\/?\w+[^>]*\/?>/g
