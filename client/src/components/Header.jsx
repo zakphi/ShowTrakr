@@ -34,15 +34,13 @@ const Header = (props) => {
             {props.auth
 
               ? <li className="wide-load"><NavLink
-              exact
-              to='/profile'
-              activeClassName='active'>My Profile</NavLink></li>
+                exact
+                to='/profile'
+                activeClassName='active'>My Profile</NavLink></li>
               : ''}
             {props.auth
-              ? <li className="wide-load" onClick={props.logOut}><NavLink
-                  exact
-                  to='/'
-                  activeClassName='active'>Log Out</NavLink>
+              ? <li className="wide-load" onClick={props.logOut}><Link
+                  to='/'>Log Out</Link>
                 </li>
               : ''}
             <li>
