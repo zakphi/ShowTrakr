@@ -82,7 +82,7 @@ class App extends Component {
   }
 
   getUsersShows(userid){
-    axios.get('/profile')
+    axios.get(`/profile/${userid}`)
     .then(res =>{
       this.setState({
         usersShows: res.data
