@@ -30,6 +30,7 @@ class App extends Component {
       searchDataLoaded: false,
       redirect: false,
       mobileNavVisible: false,
+      imageClicked: 0,
       showData: {
         title: null,
         genre: null,
@@ -53,6 +54,8 @@ class App extends Component {
     this.getUsersShows = this.getUsersShows.bind(this);
     this.changePopularPage = this.changePopularPage.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
+    this.getFavData = this.getFavData.bind(this);
   }
 
   handleSearch() {
@@ -79,21 +82,12 @@ class App extends Component {
   }
 
   getUsersShows(userid){
-    axios.get('/profile')
+    axios.get(`/profile/${userid}`)
     .then(res =>{
       this.setState({
         usersShows: res.data
       })
     })
-  }
-
-  resetUsersShows() {
-    axios.get('/profile')
-    .then(res => {
-      this.setState({
-        usersShows: res.data
-      })
-    }).catch(err => console.log(err));
   }
 
   handleLoginSubmit(e, username, password) {
@@ -171,8 +165,8 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  getShowData(showName) {
-    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${showName}`)
+  getShowData(show) {
+    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${show}`)
       .then(res => {
         console.log(res.data.name)
         const regex = /<\/?\w+[^>]*\/?>/g
@@ -190,6 +184,25 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  getFavData(show){
+    axios.get(`http://api.tvmaze.com/singlesearch/shows?q=${show.title}`)
+      .then(res => {
+        const regex = /<\/?\w+[^>]*\/?>/g
+        this.setState({
+          showData: {
+            title: res.data.name,
+            genre: res.data.genre,
+            sched_time: res.data.schedule.time,
+            sched_day: res.data.schedule.days[0],
+            image_url: res.data.image.medium,
+            summary: res.data.summary.replace(regex, ""),
+          },
+          imageClicked: show.id
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   addFavorite(){
     axios.post('/profile', {
       title: this.state.showData.title,
@@ -200,8 +213,16 @@ class App extends Component {
       summary: this.state.showData.summary,
     })
     .then(res => {
-      console.log(res.data);
-      this.resetUsersShows();
+      this.getUsersShows(this.state.user.id)
+    })
+    .catch(err => console.log(err));
+  }
+
+  removeFavorite(id) {
+    axios.delete(`/profile/${id}`,{
+        id,
+    }).then(res => {
+      this.getUsersShows(this.state.user.id)
     })
     .catch(err => console.log(err));
   }
@@ -238,6 +259,10 @@ class App extends Component {
             showData={this.state.showData}
             auth={this.state.auth}
             addFavorite={this.addFavorite}
+            removeFavorite={this.removeFavorite}
+            usersShows={this.state.usersShows}
+            imageClicked={this.state.imageClicked}
+            getFavData={this.getFavData}
           /> } />
           <Route exact path='/results' render={() => <SearchResults
             showData={this.state.showData}
@@ -248,6 +273,7 @@ class App extends Component {
           <Route exact path='/profile' render={() => <Profile
             getShowData={this.getShowData}
             usersShows={this.state.usersShows}
+            getFavData={this.getFavData}
           /> } />
           {this.state.redirect ? <Redirect push to={'/'} /> : ''}
           <Footer />

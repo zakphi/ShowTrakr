@@ -3,7 +3,7 @@ const Show = require('../models/show');
 const showController = {};
 
 showController.index = (req, res) => {
-  Show.findUsersShows(req.user.id)
+  Show.findUsersShows(req.params.id)
     .then(shows => {
       res.json(shows);
     }).catch(err => {
