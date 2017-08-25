@@ -47,7 +47,7 @@ class PopularShows extends Component {
   render(){
     return (
       <div className="home">
-        <h1>Popular Shows</h1>
+        <h1 className="pageTitle">Popular Shows</h1>
         <div className='popularShows'>
           {this.renderPopularShows()}
         </div>
