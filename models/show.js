@@ -3,7 +3,7 @@ const db = require('../db/config');
 const Show = {};
 
 Show.findUsersShows = (userid) => {
-  return db.manyOrNone(`SELECT * FROM shows 
+  return db.manyOrNone(`SELECT * FROM shows
   WHERE user_id = $1`, [userid])
 }
 
