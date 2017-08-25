@@ -7,9 +7,8 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding: 1vw 1vw 2vw 1vw;
-  background-color: #f6bd20;
-  border-bottom: 1.2vw solid #292929;
+  padding: 1vw 1vw 1vw 1vw;
+  border-bottom: 3px solid #08acd5;
 }
 
  .navBar {
@@ -20,22 +19,22 @@
 }
 
 .navBar a {
-  align-items: center;
+  font-family: 'Crete Round', serif;
   text-decoration: none;
   color: #292929;
   font-size: 2em;
+  width: 100px;
 }
 
-.navBar a:hover {
-  color: #c52018;
-}
+
 
 .navBar li {
-  padding: 0 1.5% 0 0;
+  margin-top: 15%;
 }
 
 .navBar .active{
-  color: #c52018;
+  width: 100px;
+  color: #ee1800;
 }
 
 .mobile-menu{
@@ -46,11 +45,12 @@
  .mobile-nav {
     display: flex;
     flex-direction: row;
-    width: 85%;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: space-around;
   }
 
   .slideBar{
+    padding-top: 10%;
     padding-right: 10%;
     padding-left: 10%;
     border-right: 1.2vw solid #292929;
@@ -91,6 +91,14 @@
     flex-direction: column;
   }
 
+  .pageTitle{
+    color: #292929;
+    font-family: 'Crete Round', serif;
+    font-size: 3em;
+  }
+
+  /* Page change buttons  */
+
   .changepage{
     display: flex;
     width: 84%;
@@ -99,34 +107,170 @@
     justify-content: space-around;
     padding-right: 8%;
     padding-left: 8%;
+    padding-bottom: 13%;
   }
+
   .pagebtn{
     color: white;
-    font-size: 1.3em;
+    font-size: 1em;
     height: 40px;
     width: 30%;
-    background-color: #f6bd20;
+    background-color: #08acd5;
     text-decoration: none;
-    border: 2px solid #f6bd20;
-    border-radius: 10%;
+    border: 1px solid #08acd5;
+    border-radius: 5%;
   }
 
   .currentpage{
+    font-family: 'Crete Round', serif;
     font-size: 2em;
     color: #292929;
   }
+
+  footer{
+    position: fixed;
+    background-color: #08acd5;
+    color: white;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 3%;
+    text-align: center;
+    margin-top: 5%;
+    font-family: 'Crete Round', serif;
+  }
+
+  /* login and register forms  */
+
+  .formcontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5%;
+  }
+
+  .formcontainer form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 55%;
+    padding: 5% 10% 0% 10%;
+    border-radius: 7%;
+  }
+  .containerform{
+    padding: 5%; 
+    margin-bottom: 20%;
+  }
+
+  .containerform-reg{
+    padding: 5%; 
+    margin-bottom: 5%;
+  }
+
+  .loginbtn{
+    color: white;
+    font-size: 1.3em;
+    height: 40px;
+    width: 100%;
+    background-color: #292929;
+    text-decoration: none;
+    border: 2px solid #292929;
+    border-radius: 4%;
+  }
+
+  .search-submit{
+    color: white;
+    font-size: .65em;
+    height: 10%;
+    width: 50%;
+    background-color: #292929;
+    text-decoration: none;
+    border: 2px solid #292929;
+    border-radius: 4%;
+  }
+
+
+  .search-bar{
+    border: 1px solid #292929;
+    padding-top:5%;
+    margin-top: 7%;
+  }
+
+  
  
-@media screen and (min-width: 480px) {
- 
+@media screen and (min-width: 768px) {
+
+  .search-submit{
+    width: 110%;
+    font-size: .55em;
+  }
+
+  .search{
+    display: flex;
+   flex-direction: row;
+   align-items: center
+  }
+
+  .mobile-nav {
+    justify-content: space-between;
+  }
 
   .header {
     flex-direction: row;
-    display: flex;
+    display: flex; 
   }
 
   .navBar {
+    display: flex;
     visibility: visible;
     flex-direction: row;
+    width: 600px;
+    justify-content: flex-end; 
+  }
+  .navBar li{
+    margin-top: 0%;
+    width: 100px;
+  }
+
+  .wide-load{
+    width: 100px;
+  }
+
+  .nav {
+    margin-top: 0%;
+    right: 0%;
+  }
+
+  .navBar a{
+    flex-direction: row;
+    color: #292929;
+    font-size: 1.25em;
+    right: 0%;
+    padding: 3%;
+  }
+
+  .navBar a:hover {
+  color: #ee1800;
+}
+
+  .slideBar {
+    visibility: hidden;
+    padding-right: 0%;
+    padding-left: 0%;
+    padding-top: 0%;
+  }
+
+  .slide {
+    position: relative;
+    justify-content: flex-start;
+    width: 50%;
+    visibility: hidden;
+    right: 16%;
+    overflow-x: visible;
+  }
+
+  .mobile-menu {
+    display: none;
   }
 
   .show{
@@ -134,46 +278,49 @@
     width: 20%;
     height: 330px;
     margin: 0 2.5%;
-    margin-bottom: 2%;
+    margin-bottom: 7%;
   }
 
   .show img{
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 370px;
   }
   .show img:hover{
     transform: scale(1.1);
   }
-
-  .navBar a {
-  color: white;
-  font-size: 1.75em;
-}
-
-  .mobile-menu {
-    display: none;
-  }
-
-  .slideBar {
-    position: relative;
-    visibility: hidden;
-    padding-right: 0%;
-    padding-left: 0%;
-  }
-
-  .slide {
-    width: 55%;
-    position: relative;
-    visibility: hidden;
-  }
-
-  .nav {
-    margin-top: 0%;
+  
+  .pagebtn:hover{
+    transform: scale(1.1);
   }
 
   .changepage{
     width: 40%;
     padding-right: 30%;
     padding-left: 30%;
+    padding-bottom: 6%;
   }
+
+  .formcontainer form{
+    width: 20%;
+  }
+
+  .containerform:hover{
+    border: 1px solid #ee1800;
+    transform: scale(1.1);
+  }
+
+  .containerform-reg:hover{
+    border: 1px solid #ee1800;
+    transform: scale(1.1);
+  }
+
+  .loginbtn:hover{
+    transform: scale(1.1);
+  }
+  
+  footer{
+    margin-top: 3%;
+    padding: 1%;
+  }
+
 }
