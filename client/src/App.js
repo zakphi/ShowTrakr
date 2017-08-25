@@ -54,6 +54,8 @@ class App extends Component {
     this.getUsersShows = this.getUsersShows.bind(this);
     this.changePopularPage = this.changePopularPage.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
+    this.getFavData = this.getFavData.bind(this);
   }
 
   handleSearch() {
@@ -220,8 +222,16 @@ class App extends Component {
       summary: this.state.showData.summary,
     })
     .then(res => {
-      console.log(res.data);
-      this.resetUsersShows();
+      this.getUsersShows(this.state.user.id)
+    })
+    .catch(err => console.log(err));
+  }
+
+  removeFavorite(id) {
+    axios.delete(`/profile/${id}`,{
+        id,
+    }).then(res => {
+      this.getUsersShows(this.state.user.id)
     })
     .catch(err => console.log(err));
   }
@@ -258,6 +268,10 @@ class App extends Component {
             showData={this.state.showData}
             auth={this.state.auth}
             addFavorite={this.addFavorite}
+            removeFavorite={this.removeFavorite}
+            usersShows={this.state.usersShows}
+            imageClicked={this.state.imageClicked}
+            getFavData={this.getFavData}
           /> } />
           <Route exact path='/results' render={() => <SearchResults
             showData={this.state.showData}
@@ -268,6 +282,7 @@ class App extends Component {
           <Route exact path='/profile' render={() => <Profile
             getShowData={this.getShowData}
             usersShows={this.state.usersShows}
+            getFavData={this.getFavData}
           /> } />
           {this.state.redirect ? <Redirect push to={'/'} /> : ''}
           <Footer />
