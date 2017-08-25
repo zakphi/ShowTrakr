@@ -20,7 +20,7 @@ class SearchResults extends Component {
   render(){
     return (
       <div className="home">
-        <h1>Search Results</h1>
+        <h1 className="pageTitle">Search Results</h1>
         <div className='searchResults'>
           {this.renderImageSearch()}
         </div>
