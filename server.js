@@ -20,7 +20,7 @@ app.use(session({
     key: process.env.SECRET_KEY,
     secret: process.env.SECRET_KEY,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
