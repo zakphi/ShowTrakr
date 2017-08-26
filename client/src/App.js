@@ -187,8 +187,8 @@ class App extends Component {
           showData: {
             title: res.data.name,
             genre: res.data.genre,
-            tv_network: res.data.network,
-            webChannel: res.data.webChannel,
+            tv_network: res.data.network === null ? '' : res.data.network.name,
+            webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
             sched_day: res.data.schedule.days[0],
             image_url: res.data.image.medium,
@@ -208,8 +208,8 @@ class App extends Component {
           showData: {
             title: res.data.name,
             genre: res.data.genre,
-            tv_network: res.data.network.name,
-            webChannel: res.data.webChannel.name,
+            tv_network: res.data.network === null ? '' : res.data.network.name,
+            webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
             sched_day: res.data.schedule.days[0],
             image_url: res.data.image.medium,
