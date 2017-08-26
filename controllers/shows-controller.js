@@ -16,6 +16,8 @@ showController.create = (req, res) => {
   Show.create({
     title: req.body.title,
     genre: req.body.genre,
+    tv_network: req.body.tv_network,
+    web_channel: req.body.web_channel,
     sched_time: req.body.sched_time,
     sched_day: req.body.sched_day,
     image_url: req.body.image_url,
