@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS shows (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
+    network VARCHAR(255),
     genre VARCHAR(255),
     sched_time VARCHAR(255),
     sched_day VARCHAR(255),

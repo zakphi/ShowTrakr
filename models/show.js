@@ -10,10 +10,10 @@ Show.findUsersShows = (userid) => {
 Show.create = (show, userid) => {
   return db.one(`
     INSERT INTO shows
-    (title, genre, sched_time, sched_day, image_url, summary, user_id)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    (title, genre, tv_network, web_channel, sched_time, sched_day, image_url, summary, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING *
-  `, [show.title, show.genre, show.sched_time, show.sched_day, show.image_url, show.summary, userid]);
+  `, [show.title, show.genre, show.tv_network, show.web_channel, show.sched_time, show.sched_day, show.image_url, show.summary, userid]);
 }
 
 Show.destroy = (id) => {

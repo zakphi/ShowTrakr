@@ -34,11 +34,14 @@ class App extends Component {
       showData: {
         title: null,
         genre: null,
+        tv_network: null,
+        webChannel: null,
         sched_time: null,
         sched_date: null,
         image_url: null,
         summary: null,
       },
+      network: null,
       showResults: null,
       usersShows: null,
       lastPage: null
@@ -56,6 +59,8 @@ class App extends Component {
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
     this.getFavData = this.getFavData.bind(this);
+    this.handleTvNetwork = this.handleTvNetwork.bind(this);
+    this.handleIfNetworkOrWeb = this.handleIfNetworkOrWeb.bind(this);
   }
 
   handleSearch() {
@@ -165,6 +170,14 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  handleTvNetwork() {
+      if(this.res.data.network.name === null){
+        return "";
+      } else {
+        return this.res.data.network.name;
+      }
+  }
+
   getShowData(show) {
     axios.get(`https://api.tvmaze.com/singlesearch/shows?q=${show}`)
       .then(res => {
@@ -174,12 +187,15 @@ class App extends Component {
           showData: {
             title: res.data.name,
             genre: res.data.genre,
+            tv_network: res.data.network === null ? '' : res.data.network.name,
+            webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
             sched_day: res.data.schedule.days[0],
             image_url: res.data.image.medium,
             summary: res.data.summary.replace(regex, ""),
           }
         })
+        console.log(this.state.showData)
       })
       .catch(err => console.log(err))
   }
@@ -192,6 +208,8 @@ class App extends Component {
           showData: {
             title: res.data.name,
             genre: res.data.genre,
+            tv_network: res.data.network === null ? '' : res.data.network.name,
+            webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
             sched_day: res.data.schedule.days[0],
             image_url: res.data.image.medium,
@@ -203,10 +221,20 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  handleIfNetworkOrWeb(){
+    if(this.state.tv_network !== null){
+      return this.state.tv_network.name;
+    } else{
+      return this.state.web_channel.name;
+    }
+  }
+
   addFavorite(){
     axios.post('/profile', {
       title: this.state.showData.title,
       genre: this.state.showData.genre,
+      tv_network: this.state.tv_network,
+      web_channel: this.state.web_channel,
       sched_time: this.state.showData.sched_time,
       sched_day: this.state.showData.sched_day,
       image_url: this.state.showData.image_url,
@@ -241,6 +269,7 @@ class App extends Component {
             handleNavClick={this.handleNavClick}
             mobileNavVisible={this.state.mobileNavVisible}
           />
+        <div className="body">
           <Route exact path='/' render={() => <PopularShows
             pageNum={this.state.pageNum}
             dataLoaded={this.state.apiDataLoaded}
@@ -258,6 +287,7 @@ class App extends Component {
           <Route exact path='/show' render={() => <SingleShow
             showData={this.state.showData}
             auth={this.state.auth}
+            handleIfNetworkOrWeb={this.handleIfNetworkOrWeb}
             addFavorite={this.addFavorite}
             removeFavorite={this.removeFavorite}
             usersShows={this.state.usersShows}
@@ -277,6 +307,7 @@ class App extends Component {
             getFavData={this.getFavData}
           /> } />
           {this.state.redirect ? <Redirect push to={'/'} /> : ''}
+        </div>
           <Footer />
         </div>
       </Router>

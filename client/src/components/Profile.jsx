@@ -17,6 +17,10 @@ const Profile = (props) => {
                   alt={show.title}
                   id={show.id}
                 />
+                <p>{show.title}</p>
+                <p>{show.genre}</p>
+                <p>{show.sched_day}</p>
+                <p>{show.sched_time}</p>
               </div>
             })}
           </Link>
