@@ -87,6 +87,7 @@ class App extends Component {
       this.setState({
         usersShows: res.data
       })
+        localStorage.setItem("userid", userid);
     })
   }
 
@@ -103,7 +104,7 @@ class App extends Component {
           redirect: true
         });
         this.getUsersShows(res.data.user.id);
-        sessionStorage.setItem('auth', true)
+        localStorage.setItem("username", this.state.user.username)
       })
       .catch(err => console.log(err));
   }
@@ -123,7 +124,8 @@ class App extends Component {
           user: res.data.user,
           redirect: true
         });
-        sessionStorage.setItem('auth', true)
+        this.getUsersShows(res.data.user.id);
+        localStorage.setItem("username", this.state.user.username)
       })
       .catch(err => console.log(err));
   }
