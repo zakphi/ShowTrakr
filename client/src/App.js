@@ -24,7 +24,6 @@ class App extends Component {
       search: null,
       pageNum: 1,
       auth: false,
-      auth: sessionStorage.getItem('auth') || false,
       user: localStorage.getItem('username') || null,
       popularShows: null,
       apiDataLoaded: false,
@@ -60,8 +59,7 @@ class App extends Component {
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
     this.getFavData = this.getFavData.bind(this);
-    this.handleTvNetwork = this.handleTvNetwork.bind(this);
-    this.handleIfNetworkOrWeb = this.handleIfNetworkOrWeb.bind(this);
+    this.handleheaderNav = this.handleheaderNav.bind(this);
   }
 
   handleSearch() {
@@ -83,6 +81,12 @@ class App extends Component {
     if(!this.state.mobileNavVisible) {
       this.setState({mobileNavVisible: true});
     } else {
+      this.setState({mobileNavVisible: false});
+    }
+  }
+
+  handleheaderNav() {
+    if(this.state.mobileNavVisible) {
       this.setState({mobileNavVisible: false});
     }
   }
@@ -279,6 +283,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header
+            handleheaderNav={this.handleheaderNav}
             inputSearch={this.inputSearch}
             handleSearch={this.handleSearch}
             showData={this.state.showData}
