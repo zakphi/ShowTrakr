@@ -250,9 +250,8 @@ class App extends Component {
   addFavorite(){
     axios.post('/profile', {
       title: this.state.showData.title,
-      genre: this.state.showData.genre,
-      tv_network: this.state.tv_network,
-      web_channel: this.state.web_channel,
+      tv_network: this.state.showData.tv_network,
+      web_channel: this.state.showData.webChannel,
       sched_time: this.state.showData.sched_time,
       sched_day: this.state.showData.sched_day,
       image_url: this.state.showData.image_url,
