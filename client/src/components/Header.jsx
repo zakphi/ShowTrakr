@@ -15,6 +15,7 @@ const Header = (props) => {
               <NavLink
                 exact
                 to='/'
+                onClick={props.handleheaderNav}
                 activeClassName='active'>
                 Home
               </NavLink>
@@ -23,24 +24,30 @@ const Header = (props) => {
               ? <li className="wide-load"><NavLink
                 exact
                 to='/login'
+                onClick={props.handleheaderNav}
                 activeClassName='active'>Log In</NavLink></li>
               : ''}
             {!props.auth
               ? <li className="wide-load"><NavLink
                 exact
                 to='/register'
+                onClick={props.handleheaderNav}
                 activeClassName='active'>Register</NavLink></li>
               : ''}
             {props.auth
 
               ? <li className="wide-load"><NavLink
-                exact
-                to='/profile'
-                activeClassName='active'>My Profile</NavLink></li>
+              exact
+              to='/profile'
+                onClick={props.handleheaderNav}
+              activeClassName='active'>My Profile</NavLink></li>
               : ''}
             {props.auth
-              ? <li className="wide-load" onClick={props.logOut}><Link
-                  to='/'>Log Out</Link>
+              ? <li className="wide-load" onClick={props.logOut}><NavLink
+                  exact
+                  to='/'
+                onClick={props.handleheaderNav}
+                  activeClassName='active'>Log Out</NavLink>
                 </li>
               : ''}
             <li>
