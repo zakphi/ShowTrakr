@@ -230,6 +230,7 @@ class App extends Component {
       summary: this.state.showData.summary,
     })
     .then(res => {
+      window.location.reload();
       this.getUsersShows(this.state.user.id)
     })
     .catch(err => console.log(err));
@@ -239,6 +240,7 @@ class App extends Component {
     axios.delete(`/profile/${id}`,{
         id,
     }).then(res => {
+      window.location.reload();
       this.getUsersShows(this.state.user.id)
     })
     .catch(err => console.log(err));
