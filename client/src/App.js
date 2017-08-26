@@ -23,8 +23,9 @@ class App extends Component {
     this.state = {
       search: null,
       pageNum: 1,
+      auth: false,
       auth: sessionStorage.getItem('auth') || false,
-      user: null,
+      user: localStorage.getItem('username') || null,
       popularShows: null,
       apiDataLoaded: false,
       searchDataLoaded: false,
@@ -137,22 +138,36 @@ class App extends Component {
           auth: false,
           redirect: false
         });
-        sessionStorage.removeItem('auth')
+        localStorage.removeItem("userid");
+        localStorage.removeItem("username");
       })
       .catch(err => console.log(err));
   }
 
   componentDidMount(){
-    axios.get('https://www.episodate.com/api/most-popular?page=1')
-      .then(res => {
-        this.setState({
-          popularShows: res.data.tv_shows,
-          apiDataLoaded: true,
-          lastPage: res.data.pages
-        })
-      })
-      .catch(err => console.log(err))
+    let userid = localStorage.getItem("userid");
+    let username = localStorage.getItem("username");
+    if(userid){ this.setState({ auth: true }) };
+    if(username){ this.setState({ auth: true }) };
+
+    const popularShowsRequest = axios.get('https://www.episodate.com/api/most-popular?page=1')
+          .then(res => this.setState({
+            popularShows: res.data.tv_shows,
+            apiDataLoaded: true,
+            lastPage: res.data.pages
+          }))
+    const usersShowsRequest = axios.get(`/profile/${userid}`)
+          .then(res => this.setState({
+            usersShows: res.data
+          }))
+
+    Promise.all([popularShowsRequest])
+       .then(() => {
+           return usersShowsRequest
+       })
+        .catch(err => console.log(err));
   }
+
 
   changePopularPage(num){
     const newPageNum = this.state.pageNum + num;
