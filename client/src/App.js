@@ -33,7 +33,6 @@ class App extends Component {
       imageClicked: 0,
       showData: {
         title: null,
-        genre: null,
         tv_network: null,
         webChannel: null,
         sched_time: null,
@@ -207,7 +206,6 @@ class App extends Component {
         this.setState({
           showData: {
             title: res.data.name,
-            genre: res.data.genre,
             tv_network: res.data.network === null ? '' : res.data.network.name,
             webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
@@ -228,7 +226,6 @@ class App extends Component {
         this.setState({
           showData: {
             title: res.data.name,
-            genre: res.data.genre,
             tv_network: res.data.network === null ? '' : res.data.network.name,
             webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
