@@ -68,13 +68,41 @@
     position: fixed;
     width: 0;
     overflow-x: hidden;
-  } 
+  }
 
   .nav {
     margin-top: 15%;
   }
 
-  .show{
+  .allSched {
+    margin-bottom: 50px;
+  }
+
+  .schedule {
+    display: flex;
+    border-left: 20px solid lightgrey;
+    border-right: 20px solid lightgrey;
+  }
+
+  .schedData {
+    flex-grow: 1;
+    width: 50px;
+    color: #008ae6;
+    font-size: 18px;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .schedHead {
+    color: black;
+    font-size: 15px;
+  }
+
+  .pageHeading {
+    margin-bottom: 50px;
+  }
+
+  .show {
     display: inline-block;
     width: 40%;
     height: 330px;
@@ -143,7 +171,7 @@
   .favBtn-container{
     display: flex;
     width: 84%;
-    align-items:center; 
+    align-items:center;
     flex-direction: row;
     justify-content: space-around;
     padding-right: 8%;
@@ -161,7 +189,7 @@
   .changepage{
     display: flex;
     width: 84%;
-    align-items:center; 
+    align-items:center;
     flex-direction: row;
     justify-content: space-around;
     padding-right: 8%;
@@ -223,12 +251,12 @@
     border-radius: 7%;
   }
   .containerform{
-    padding: 5%; 
+    padding: 5%;
     margin-bottom: 20%;
   }
 
   .containerform-reg{
-    padding: 5%; 
+    padding: 5%;
     margin-bottom: 5%;
   }
 
@@ -259,7 +287,7 @@
     border: 1px solid #292929;
     padding:5%;
   }
- 
+
 @media screen and (min-width: 768px) {
 
   .search-submit{
@@ -268,7 +296,7 @@
   }
 
   .singleShow p{
-    width: 55%;  
+    width: 55%;
   }
 
   .search{
@@ -283,7 +311,7 @@
 
   .header {
     flex-direction: row;
-    display: flex; 
+    display: flex;
   }
 
   .favButton{
@@ -299,7 +327,7 @@
     visibility: visible;
     flex-direction: row;
     width: 500px;
-    justify-content: flex-end; 
+    justify-content: flex-end;
   }
   .navBar li{
     margin-top: 0%;
@@ -359,11 +387,11 @@
     width: 250px;
     height: 370px;
   }
-  
+
   .show img:hover{
     transform: scale(1.1);
   }
-  
+
   .favButton:hover{
     transform: scale(1.1);
   }
@@ -399,7 +427,7 @@
   .body{
     margin-bottom: 5%;
   }
-  
+
   footer{
     margin-top: 3%;
     padding: 1%;
