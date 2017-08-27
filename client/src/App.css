@@ -163,11 +163,9 @@
     background-color: #08acd5;
     border: 1px solid #08acd5;
     border-radius: 5%;
-  }
-
-  .favButton a{
     text-decoration: none;
     color: white;
+    font-family: 'Crete Round', serif;
   }
 
   .favBtn-container{
