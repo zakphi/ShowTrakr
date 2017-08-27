@@ -1,9 +1,10 @@
 # TV Show Trackr
 
-![]()
-![]()
+![homepage](./assets/homepage.png)
 
 View TV Show Trackr hosted through Heroku here:
+
+[TV Show Trakr](https://tvshowtrakr.herokuapp.com/)
 
 ## What is TV Show Trakr?
 
@@ -28,13 +29,36 @@ While brainstorming during group bonding phase, our team discovered our commonal
 ### Sample Code
 
 ```
+componentDidMount(){
+  let userid = localStorage.getItem("userid");
+  let username = localStorage.getItem("username");
+  if(userid){ this.setState({ auth: true }) };
+  if(username){ this.setState({ auth: true }) };
+
+  const popularShowsRequest = axios.get('https://www.episodate.com/api/most-popular?page=1')
+    .then(res => this.setState({
+      popularShows: res.data.tv_shows,
+      apiDataLoaded: true,
+      lastPage: res.data.pages
+    }))
+  const usersShowsRequest = axios.get(`/profile/${userid}`)
+    .then(res => this.setState({
+      usersShows: res.data
+    }))
+
+  Promise.all([popularShowsRequest])
+    .then(() => {
+        return usersShowsRequest
+    })
+    .catch(err => console.log(err));
+}
 ```
 
 ## The Making of TV Show Trackr
 
 Credits: 
-* [Tv Maze] http://www.tvmaze.com/api
-* [Episodate] https://www.episodate.com/api
+* [Tv Maze](http://www.tvmaze.com/api)
+* [Episodate](https://www.episodate.com/api)
 
 ## Opportunities for Future Growth
 
