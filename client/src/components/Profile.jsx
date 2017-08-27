@@ -25,11 +25,7 @@ const Profile = (props) => {
                   </div>
                   <div className='schedData'>
                     <h3 className='schedHead'>Network</h3>
-                     <p>{show.tv_network}</p>
-                  </div>
-                  <div className='schedData'>
-                    <h3 className='schedHead'>Web Channel</h3>
-                     <p>{show.web_channel}</p>
+                     <p>{show.tv_network||show.web_channel}</p>
                   </div>
                 </div>
                 )
