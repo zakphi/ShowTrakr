@@ -80,14 +80,20 @@
 
   .schedule {
     display: flex;
-    border-left: 20px solid lightgrey;
-    border-right: 20px solid lightgrey;
+    border-left: 20px solid #8b8b8b;
+    border-right: 20px solid #8b8b8b;
+  }
+
+  .pageHeading{
+    font-family: 'Crete Round', serif;
+    color: #292929;
   }
 
   .schedData {
+    font-family: 'Crete Round', serif;
     flex-grow: 1;
     width: 50px;
-    color: #008ae6;
+    color: #08acd5;
     font-size: 18px;
     border-top: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
@@ -166,6 +172,7 @@
     text-decoration: none;
     color: white;
     font-family: 'Crete Round', serif;
+    border-radius: 5%;
   }
 
   .favBtn-container{
@@ -265,9 +272,9 @@
     font-size: 1.3em;
     height: 40px;
     width: 100%;
-    background-color: #292929;
+    background-color: #08acd5;
     text-decoration: none;
-    border: 2px solid #292929;
+    border: 2px solid #08acd5;
     border-radius: 4%;
   }
 
