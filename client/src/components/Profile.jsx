@@ -32,7 +32,7 @@ const Profile = (props) => {
               })}
           </div>
           <div className="popularShows">
-           <h2 className="pageHeading">Favorites</h2>
+           <h2 className="pageHeading">Your Favorites</h2>
             {props.usersShows.map(show => {
               return (
                 <div className='show'>
