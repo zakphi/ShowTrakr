@@ -33,7 +33,6 @@ class App extends Component {
       imageClicked: 0,
       showData: {
         title: null,
-        genre: null,
         tv_network: null,
         webChannel: null,
         sched_time: null,
@@ -207,7 +206,6 @@ class App extends Component {
         this.setState({
           showData: {
             title: res.data.name,
-            genre: res.data.genre,
             tv_network: res.data.network === null ? '' : res.data.network.name,
             webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
@@ -228,7 +226,6 @@ class App extends Component {
         this.setState({
           showData: {
             title: res.data.name,
-            genre: res.data.genre,
             tv_network: res.data.network === null ? '' : res.data.network.name,
             webChannel: res.data.webChannel === null ? '' : res.data.webChannel.name,
             sched_time: res.data.schedule.time,
@@ -253,9 +250,8 @@ class App extends Component {
   addFavorite(){
     axios.post('/profile', {
       title: this.state.showData.title,
-      genre: this.state.showData.genre,
-      tv_network: this.state.tv_network,
-      web_channel: this.state.web_channel,
+      tv_network: this.state.showData.tv_network,
+      web_channel: this.state.showData.webChannel,
       sched_time: this.state.showData.sched_time,
       sched_day: this.state.showData.sched_day,
       image_url: this.state.showData.image_url,
