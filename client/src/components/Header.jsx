@@ -37,17 +37,15 @@ const Header = (props) => {
             {props.auth
 
               ? <li className="wide-load"><NavLink
-              exact
-              to='/profile'
+                exact
+                to='/profile'
                 onClick={props.handleheaderNav}
-              activeClassName='active'>My Profile</NavLink></li>
+                activeClassName='active'>My Profile</NavLink></li>
               : ''}
             {props.auth
-              ? <li className="wide-load" onClick={props.logOut}><NavLink
-                  exact
+              ? <li className="wide-load" onClick={props.logOut}><Link
                   to='/'
-                onClick={props.handleheaderNav}
-                  activeClassName='active'>Log Out</NavLink>
+                  onClick={props.handleheaderNav}>Log Out</Link>
                 </li>
               : ''}
             <li>

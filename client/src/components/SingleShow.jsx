@@ -15,8 +15,15 @@ class SingleShow extends Component {
         </ul>
         <p>{this.props.showData.summary}</p>
         <div className="favBtn-container">
-        {this.props.auth ? <button className="favButton" onClick={() => this.props.addFavorite()}><Link to='/profile'>Add</Link></button> : ''}
-        {this.props.auth ? <button className="favButton" onClick={() => this.props.removeFavorite(this.props.imageClicked)}><Link to='/profile'>Remove</Link></button> : ''}
+        {this.props.auth
+          ? <Link to='/profile'>
+              <button className="favButton" onClick={() => this.props.addFavorite()}>Add</button>
+            </Link>
+          : ''}
+        {this.props.auth
+          ? <Link to='/profile'>
+              <button className="favButton" onClick={() => this.props.removeFavorite(this.props.imageClicked)}>Remove</button>
+            </Link> : ''}
         </div>
       </div>
     )
