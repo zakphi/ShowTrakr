@@ -7,7 +7,7 @@ const Profile = (props) => {
       <div className="home">
         <h1 className="pageTitle">{localStorage.getItem('username')}'s Profile</h1>
            <div className="allSched">
-            <h2 className="pageHeading">TV-Schedule</h2>
+            <h2 className="pageHeading">Your TV-Schedule</h2>
             {props.usersShows.map(show => {
               return (
                 <div className='schedule'>
