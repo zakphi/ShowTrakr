@@ -69,6 +69,7 @@ componentDidMount(){
 Credits: 
 * [Tv Maze](http://www.tvmaze.com/api)
 * [Episodate](https://www.episodate.com/api)
+* [Color Palette](http://pokepalettes.com/#magneton)
 
 ## Opportunities for Future Growth
 
