@@ -25,6 +25,12 @@ While brainstorming during group bonding phase, our team discovered our commonal
 
 * Express
 * React
+* Axios
+* React-Router-Dom
+
+## Installation Instructions
+
+Cloan repo and cd into it. Run yarn install in both the main project folder and then again in the client folder.
 
 ### Sample Code
 
@@ -54,6 +60,10 @@ componentDidMount(){
 }
 ```
 
+## Proposal- User Story/Wireframes
+
+[Proposal](https://github.com/zakphi/TVShowTrakr/blob/master/proposal.md)
+
 ## The Making of TV Show Trackr
 
 Credits: 
@@ -62,4 +72,6 @@ Credits:
 
 ## Opportunities for Future Growth
 
-Our team would definitely love to further develop our web platform by incorporating a feature that would allow users to post comments and rate TV shows. In addition we have discussed adding a scheduling feature that would notify users of their tv show times.
+Our team would definitely love to further develop our web platform by incorporating a feature that would allow users to post comments and rate TV shows. In addition we have discussed adding a scheduling feature that would notify users of their tv show times. 
+
+I feel like we struggled working on the little things. We may have gotten lost in the weeds trying to get things like localy storing data so that we could refresh on the page. This unfortunately distracted us from larger ticket items like the aforementioned comments. Also I (Alex Calleia) will refactor all the CSS in Dreamweaver; down with Flexbox!
